@@ -1,8 +1,5 @@
-// Express requirements
 import path from 'path';
 import fs from 'fs';
-
-// React requirements
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
@@ -11,23 +8,12 @@ import { StaticRouter } from 'react-router';
 import { Frontload, frontloadServerRender } from 'react-frontload';
 import Loadable from 'react-loadable';
 
-// Our store, entrypoint, and manifest
 import createStore from '../src/store';
 import App from '../src/app/app';
 import manifest from '../build/asset-manifest.json';
-
-// Some optional Redux functions related to user authentication
 import { setCurrentUser, logoutUser } from '../src/modules/auth';
 
-// LOADER
 export default (req, res) => {
-  /*
-    A simple helper function to prepare the HTML markup. This loads:
-      - Page title
-      - SEO meta tags
-      - Preloaded state (for Redux) depending on the current route
-      - Code-split script tags depending on the current route
-  */
   const injectHTML = (data, { html, title, meta, body, scripts, state }) => {
     data = data.replace('<html>', `<html ${html}>`);
     data = data.replace(/<title>.*?<\/title>/g, title);
@@ -41,23 +27,18 @@ export default (req, res) => {
     return data;
   };
 
-  // Load in our HTML file from our build
   fs.readFile(
     path.resolve(__dirname, '../build/index.html'),
     'utf8',
     (err, htmlData) => {
-      // If there's an error... serve up something nasty
       if (err) {
         console.error('Read error', err);
 
         return res.status(404).end();
       }
 
-      // Create a store (with a memory history) from our current url
       const { store } = createStore(req.url);
 
-      // If the user has a cookie (i.e. they're signed in) - set them as the current user
-      // Otherwise, we want to set the current state to be logged out, just in case this isn't the default
       if ('mywebsite' in req.cookies) {
         store.dispatch(setCurrentUser(req.cookies.mywebsite));
       } else {

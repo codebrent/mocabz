@@ -1,1 +1,1 @@
-web: npm run htest
+web: npm run serve
