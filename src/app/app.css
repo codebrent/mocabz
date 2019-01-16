@@ -1,5 +1,5 @@
 #app {
-  text-align: center;
+  text-align: left;
 }
 
 #header {
@@ -14,12 +14,17 @@
   font-size: 1.5em;
 }
 
+#wordfind,
+#homepage {
+  padding-left: 20px;
+}
+
 #links {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 #links li.current a {

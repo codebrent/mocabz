@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
 import Page from "../../components/page";
 
-import { getWordfindResult } from "../../../modules/wordfind";
+import { getWordfindResult, setWord } from "../../../modules/wordfind";
 
 const frontload = () => undefined;
 
@@ -12,16 +12,22 @@ class Wordfind extends Component {
   render() {
     return (
       <Page id="wordfind" description={`This is a wordfind generator`}>
-        Wordfind
+        <input type="text" />
+        <hr />
+        <div>{JSON.stringify(this.props.wordfind)}</div>
+        <div>Wordfind</div>
       </Page>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  word: state.word,
+  wordfind: state.wordfind
+});
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getWordfindResult }, dispatch);
+  bindActionCreators({ getWordfindResult, setWord }, dispatch);
 
 export default connect(
   mapStateToProps,
