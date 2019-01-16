@@ -4,38 +4,11 @@ import { Link } from "react-router-dom";
 const links = [
   {
     to: "/",
-    text: "Homepage"
+    text: "Home"
   },
   {
-    to: "/about",
-    text: "About"
-  },
-  {
-    to: "/profile/1",
-    text: "Profile 1"
-  },
-  {
-    to: "/profile/2",
-    text: "Profile 2"
-  },
-  {
-    to: "/login",
-    text: "Login",
-    auth: false
-  },
-  {
-    to: "/dashboard",
-    text: "Dashboard",
-    auth: true
-  },
-  {
-    to: "/logout",
-    text: "Logout",
-    auth: true
-  },
-  {
-    to: "/this-is-broken",
-    text: "Broken Page"
+    to: "/wordfind",
+    text: "Wordfind"
   }
 ];
 
@@ -57,7 +30,6 @@ const HeaderLink = ({ to, text, current }) => (
 
 export default ({ isAuthenticated, current }) => (
   <header id="header">
-    <h1 id="title">T1</h1>
     <ul id="links">
       {links.map((link, index) => {
         const TheLink = <HeaderLink key={index} current={current} {...link} />;
