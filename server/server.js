@@ -8,6 +8,7 @@ import Loadable from "react-loadable";
 import cookieParser from "cookie-parser";
 
 import loader from "./loader";
+import api from "./api";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.use(cookieParser());
+app.use("/api", api);
 app.use(express.Router().get("/", loader));
 app.use(express.static(path.resolve(__dirname, "../build")));
 app.use(loader);
