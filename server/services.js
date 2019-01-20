@@ -2,7 +2,10 @@ import fs from "fs";
 import path from "path";
 
 export function wordfind(word) {
-  const data = fs.readFileSync(path.resolve(__dirname, "twl06.txt"), "utf8");
+  const data = fs.readFileSync(
+    path.resolve(__dirname, "word_list.txt"),
+    "utf8"
+  );
   let allWords = data.split(/\r?\n/).filter(w => w.length < 7);
   let results = getWordCombinations(word, allWords);
   return ["three", "four", "five", "six"].reduce(
@@ -10,7 +13,7 @@ export function wordfind(word) {
       ...acc,
       [number]: results[idx]
     }),
-    {}
+    { original: word }
   );
 }
 

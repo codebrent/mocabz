@@ -11,17 +11,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_WORD:
+    case SET_WORD: {
       return {
         ...state,
         word: action.payload
       };
+    }
 
-    case SET_WORDFIND_RESULT:
-      return {
-        ...state,
-        wordfinds: [...state.wordfinds, action.payload]
-      };
+    case SET_WORDFIND_RESULT: {
+      const { word } = action.payload;
+      const { wordfinds } = state;
+      const isDuplicate =
+        wordfinds.map(wordfind => wordfind.word).indexOf(word) !== -1;
+      return isDuplicate
+        ? state
+        : {
+            ...state,
+            wordfinds: [action.payload, ...state.wordfinds]
+          };
+    }
 
     default:
       return state;
@@ -41,7 +49,7 @@ export const getWordfindResult = word => dispatch =>
       dispatch({
         type: SET_WORDFIND_RESULT,
         payload: {
-          word,
+          word: json.original,
           wordfind: json
         }
       })
