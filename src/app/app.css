@@ -17,6 +17,7 @@
 #wordfind,
 #homepage {
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 #links {
@@ -44,4 +45,20 @@
 
 #content {
   margin-top: 20px;
+  width: 100%;
+}
+
+input {
+  height: 30px;
+  font-size: 30px;
+  width: 200px;
+  padding-left: 10px;
+  vertical-align: bottom;
+}
+
+button {
+  margin-left: 10px;
+  height: 36px;
+  border-width: 1px;
+  font-size: 25px;
 }

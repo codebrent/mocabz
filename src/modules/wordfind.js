@@ -6,7 +6,7 @@ export const SET_WORD = "SET_WORD";
 
 const initialState = {
   word: "",
-  wordfind: {}
+  wordfinds: []
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case SET_WORDFIND_RESULT:
       return {
         ...state,
-        wordfind: action.payload
+        wordfinds: [...state.wordfinds, action.payload]
       };
 
     default:
@@ -35,11 +35,14 @@ export const setWord = word => dispatch =>
   });
 
 export const getWordfindResult = word => dispatch =>
-  fetch(`wordfind/${word}`)
+  fetch(`api/wordfind/${word}`)
     .then(data => data.json())
     .then(json =>
       dispatch({
         type: SET_WORDFIND_RESULT,
-        payload: json
+        payload: {
+          word,
+          wordfind: json
+        }
       })
     );
