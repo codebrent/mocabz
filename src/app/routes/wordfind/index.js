@@ -11,7 +11,7 @@ const frontload = props => Promise.resolve({});
 class Wordfind extends Component {
   constructor(props) {
     super(props);
-    this.state = { word: "aa" };
+    this.state = { word: "" };
   }
 
   onInputChange(event) {

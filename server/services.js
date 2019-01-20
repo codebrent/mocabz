@@ -10,7 +10,7 @@ export function wordfind(word) {
       ...acc,
       [number]: results[idx]
     }),
-    {}
+    { original: word }
   );
 }
 
