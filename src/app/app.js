@@ -11,6 +11,7 @@ import Header from "./header";
 import Routes from "./routes";
 
 import "./app.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   componentWillMount() {

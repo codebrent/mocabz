@@ -48,17 +48,23 @@
   width: 100%;
 }
 
-input {
-  height: 30px;
-  font-size: 30px;
-  width: 200px;
-  padding-left: 10px;
-  vertical-align: bottom;
+.card-header {
+  font-weight: bold;
 }
 
-button {
-  margin-left: 10px;
+.close {
   height: 36px;
-  border-width: 1px;
-  font-size: 25px;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.badge {
+  margin-left: 5px;
+}
+
+.word-count {
+  margin-left: 5px;
+  font-weight: bold;
 }
