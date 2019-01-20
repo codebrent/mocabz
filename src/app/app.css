@@ -61,7 +61,8 @@
 }
 
 .badge {
-  margin-left: 5px;
+  margin: 5px;
+  font-size: 125% !important;
 }
 
 .word-count {

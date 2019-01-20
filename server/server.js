@@ -35,6 +35,7 @@ Loadable.preloadAll().then(() => {
 });
 
 app.on("error", error => {
+  console.log(error);
   if (error.syscall !== "listen") {
     throw error;
   }
