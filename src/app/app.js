@@ -39,8 +39,9 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ establishCurrentUser }, dispatch);
+const mapDispatchToProps = {
+  establishCurrentUser
+};
 
 export default withRouter(
   connect(

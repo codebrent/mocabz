@@ -5,7 +5,11 @@ import { frontloadConnect } from "react-frontload";
 import Page from "../../components/page";
 import Result from "./Result";
 
-import { getWordfindResult, setWord } from "../../../modules/wordfind";
+import {
+  getWordfindResult,
+  removeResult,
+  setWord
+} from "../../../modules/wordfind";
 
 const frontload = props => Promise.resolve({});
 
@@ -35,7 +39,7 @@ class Wordfind extends Component {
   };
 
   render() {
-    const { word, wordfinds } = this.props;
+    const { word, wordfinds, removeResult } = this.props;
     return (
       <Page id="wordfind" description={`This is a wordfind generator`}>
         <div className="input-group mb-3">
@@ -59,7 +63,11 @@ class Wordfind extends Component {
           </div>
         </div>
         {wordfinds.map(wfind => (
-          <Result key={wfind.word} wordfind={wfind} />
+          <Result
+            key={wfind.word}
+            wordfind={wfind}
+            onRemoveResult={removeResult}
+          />
         ))}
       </Page>
     );
@@ -72,7 +80,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getWordfindResult,
-  setWord
+  setWord,
+  removeResult
 };
 
 export default connect(

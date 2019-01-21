@@ -43,37 +43,29 @@ export default (state = initialState, action) => {
   }
 };
 
-export const removeResult = word => {
-  return dispatch =>
-    dispatch({
-      type: REMOVE_RESULT,
-      payload: word
-    });
-};
+export const removeResult = word => ({
+  type: REMOVE_RESULT,
+  payload: word
+});
 
-export const setWord = word => {
-  return dispatch =>
-    dispatch({
-      type: SET_WORD,
-      payload: word
-    });
-};
+export const setWord = word => ({
+  type: SET_WORD,
+  payload: word
+});
 
-export const getWordfindResult = word => {
-  return dispatch =>
-    fetch(`api/wordfind/${word}`)
-      .then(data => data.json())
-      .then(json =>
-        dispatch({
-          type: SET_WORDFIND_RESULT,
-          payload: {
-            word: json.original,
-            wordfind: json
-          }
-        })
-      )
-      .catch(err => {
-        console.log("caught");
-        console.log(err);
-      });
-};
+export const getWordfindResult = word => dispatch =>
+  fetch(`api/wordfind/${word}`)
+    .then(data => data.json())
+    .then(json =>
+      dispatch({
+        type: SET_WORDFIND_RESULT,
+        payload: {
+          word: json.original,
+          wordfind: json
+        }
+      })
+    )
+    .catch(err => {
+      console.log("caught");
+      console.log(err);
+    });
