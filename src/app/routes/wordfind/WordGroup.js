@@ -18,7 +18,7 @@ function getClassName(length) {
 }
 
 const WordGroup = props => {
-  const { length, words = null, onRemove } = props;
+  const { length, words = null } = props;
   return (
     words &&
     words.length > 0 && (

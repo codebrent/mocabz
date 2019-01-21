@@ -34,14 +34,6 @@ class Wordfind extends Component {
     getWordfindResult(word);
   };
 
-  onRemoveResult = event => {
-    console.log("onRemoveResult");
-  };
-
-  onRemoveWord = event => {
-    console.log("onRemoveWord");
-  };
-
   render() {
     const { word, wordfinds } = this.props;
     return (
@@ -67,11 +59,7 @@ class Wordfind extends Component {
           </div>
         </div>
         {wordfinds.map(wfind => (
-          <Result
-            wordfind={wfind}
-            onRemoveResult={this.onRemoveResult}
-            onRemoveWord={this.onRemoveWord}
-          />
+          <Result key={wfind.word} wordfind={wfind} />
         ))}
       </Page>
     );
@@ -82,14 +70,10 @@ const mapStateToProps = state => ({
   ...state["wordfind"]
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      getWordfindResult,
-      setWord
-    },
-    dispatch
-  );
+const mapDispatchToProps = {
+  getWordfindResult,
+  setWord
+};
 
 export default connect(
   mapStateToProps,
