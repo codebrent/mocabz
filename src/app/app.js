@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 
-// Action creators and helpers
-import { establishCurrentUser } from "../modules/auth";
 import { isServer } from "../store";
 
 import Header from "./header";
@@ -14,19 +12,10 @@ import "./app.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
-  componentWillMount() {
-    if (!isServer) {
-      this.props.establishCurrentUser();
-    }
-  }
-
   render() {
     return (
       <div id="app">
-        <Header
-          isAuthenticated={this.props.isAuthenticated}
-          current={this.props.location.pathname}
-        />
+        <Header current={this.props.location.pathname} />
         <div id="content">
           <Routes />
         </div>
@@ -35,13 +24,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-const mapDispatchToProps = {
-  establishCurrentUser
-};
+const mapStateToProps = null;
+const mapDispatchToProps = null;
 
 export default withRouter(
   connect(

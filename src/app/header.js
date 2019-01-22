@@ -31,21 +31,9 @@ const HeaderLink = ({ to, text, current }) => (
 export default ({ isAuthenticated, current }) => (
   <header id="header">
     <ul id="links">
-      {links.map((link, index) => {
-        const TheLink = <HeaderLink key={index} current={current} {...link} />;
-
-        if (link.hasOwnProperty("auth")) {
-          if (link.auth && isAuthenticated) {
-            return TheLink;
-          } else if (!link.auth && !isAuthenticated) {
-            return TheLink;
-          }
-
-          return null;
-        }
-
-        return TheLink;
-      })}
+      {links.map((link, index) => (
+        <HeaderLink key={index} current={current} {...link} />
+      ))}
     </ul>
   </header>
 );

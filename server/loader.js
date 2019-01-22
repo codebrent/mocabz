@@ -11,7 +11,6 @@ import Loadable from "react-loadable";
 import createStore from "../src/store";
 import App from "../src/app/app";
 import manifest from "../build/asset-manifest.json";
-import { setCurrentUser, logoutUser } from "../src/modules/auth";
 
 export default (req, res) => {
   const injectHTML = (data, { html, title, meta, body, scripts, state }) => {
@@ -39,29 +38,9 @@ export default (req, res) => {
 
       const { store } = createStore(req.url);
 
-      if ("mywebsite" in req.cookies) {
-        store.dispatch(setCurrentUser(req.cookies.mywebsite));
-      } else {
-        store.dispatch(logoutUser());
-      }
-
       const context = {};
       const modules = [];
 
-      /*
-        Here's the core funtionality of this file. We do the following in specific order (inside-out):
-          1. Load the <App /> component
-          2. Inside of the Frontload HOC
-          3. Inside of a Redux <StaticRouter /> (since we're on the server), given a location and context to write to
-          4. Inside of the store provider
-          5. Inside of the React Loadable HOC to make sure we have the right scripts depending on page
-          6. Render all of this sexiness
-          7. Make sure that when rendering Frontload knows to get all the appropriate preloaded requests
-
-        In English, we basically need to know what page we're dealing with, and then load all the appropriate scripts and
-        data for that page. We take all that information and compute the appropriate state to send to the user. This is
-        then loaded into the correct components and sent as a Promise to be handled below.
-      */
       frontloadServerRender(() =>
         renderToString(
           <Loadable.Capture report={m => modules.push(m)}>
